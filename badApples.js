@@ -4,12 +4,12 @@
 //var input = [[1,3],[7,6],[7,2],[0,0],[0,3],[1,3],[1,3],[4,5],[7,6]]; // - 2 bad packages (1 rotten) adjacent
 //var input = [[1,3],[7,6],[7,2],[1,3],[0,0],[4,5],[0,3],[7,6]]; // - 2 bad packages (1 rotten) non adjacent
 //var input = [[1,3],[7,6],[7,2],[1,3],[0,1],[4,5],[0,3],[7,6]]; // - 2 bad packages, replace becomes duplicate
-//var input = [[1,3],[7,6],[7,2],[1,3],[0,2],[4,5],[0,3],[7,6]]; // - 2 bad packages, replace, with their sum (fruit position)
-//var input = [[1,3],[7,6],[7,2],[1,3],[2,0],[4,5],[0,3],[7,6]]; // - 2 bad packages, replace with their sum (fruit position)
+//var input = [[1,3],[7,6],[7,2],[1,3],[0,2],[4,5],[0,3],[7,6]]; // - 2 bad packages, replace, different bad apple position
+//var input = [[1,3],[7,6],[7,2],[1,3],[2,0],[4,5],[0,3],[7,6]]; // - 2 bad packages, replace,  different bad apple position
 //var input = [[1,3],[7,6],[7,2],[1,3],[0,2],[4,5],[0,3],[7,6],[9,0]]; // - multiple bad packages, 1 can be replaced
 //var input = [[1,3],[7,6],[7,2],[1,3],[0,2],[4,5],[0,3],[7,6],[1,1],[8,0],[4,3],[9,0],[0,5]]; // - multiple bad packages, 2 can be replaced
 //var input = [[1,3],[7,6],[4,0],[7,2],[1,3],[0,2],[4,5],[0,3],[7,6],[9,0]]; // - multiple bad packages, all can be replaced
-//var input = [[0,0],[1,3],[7,6],[7,2],[1,3],[0,0],[4,5],[0,3],[7,6]]; // - 1st element bad package
+var input = [[0,0],[1,3],[7,6],[7,2],[1,3],[0,0],[4,5],[0,3],[7,6]]; // - 1st element bad package
 
 //fruits to be repackaged with lower numbered fruit first
 //a package can have the same fruits, no problem
@@ -64,10 +64,10 @@ for(var i = 0; i < input.length; i++) {
 
 console.log(input);
 
+
 /*
 Object.keys(badPackage).some(function(element, index) {
   return inputIndex[index] == undefined;
   input[element] = inputIndex[index];
 });
-
-/*
+*/
