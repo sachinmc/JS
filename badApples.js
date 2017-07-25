@@ -9,12 +9,17 @@
 //var input = [[1,3],[7,6],[7,2],[1,3],[0,2],[4,5],[0,3],[7,6],[9,0]]; // - multiple bad packages, 1 can be replaced
 //var input = [[1,3],[7,6],[7,2],[1,3],[0,2],[4,5],[0,3],[7,6],[1,1],[8,0],[4,3],[9,0],[0,5]]; // - multiple bad packages, 2 can be replaced
 //var input = [[1,3],[7,6],[4,0],[7,2],[1,3],[0,2],[4,5],[0,3],[7,6],[9,0]]; // - multiple bad packages, all can be replaced
-var input = [[0,0],[1,3],[7,6],[7,2],[1,3],[0,0],[4,5],[0,3],[7,6]]; // - 1st element bad package
+//var input = [[1,0],[4,0],[0,2],[7,0],[0,1]]; //all bad apples
+//var input = [[0,0],[0,0],[0,],[0,0],[0,0]]; //all rotten apples
+//var input = [[0,0],[1,3],[7,6],[7,2],[1,3],[0,0],[4,5],[0,3],[7,6]]; // - 1st element bad package
+//var input =[[]] // empty box
 
 //fruits to be repackaged with lower numbered fruit first
 //a package can have the same fruits, no problem
 //order of packages in the box to be maintained
 //duplicate packages are fine
+
+var input = [ [ 5, 5 ],[ 0, 6 ],[ 6, 0 ],[ 4, 2 ],[ 2, 7 ],[ 2, 4 ],[ 6, 7 ],[ 5, 6 ],[ 4, 2 ] ];
 
 var inputIndex = [];
 var fruitArray = [];
