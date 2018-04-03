@@ -30,5 +30,4 @@ function logOddNumbers(num) {
   }
 }
 
-
 logOddNumbers(19);
