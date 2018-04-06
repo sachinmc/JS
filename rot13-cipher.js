@@ -10,15 +10,19 @@ function rot13(string) {
   for (i = 0; i < string.length; i++) {
     if (string[i] >= 'a' && string[i] <= 'z') {
       asciiNumeric = string.charCodeAt(i) + 13;
+
       if (asciiNumeric > 122) {
         asciiNumeric = 96 + (asciiNumeric - 122)
       }
+
       result += String.fromCharCode(asciiNumeric);
     } else if (string[i] >= 'A' && string[i] <= 'Z') {
       asciiNumeric = string.charCodeAt(i) + 13;
+
       if (asciiNumeric > 90) {
         asciiNumeric = 64 + (asciiNumeric - 90)
       }
+
       result += String.fromCharCode(asciiNumeric);
     } else {
       result += string[i];
