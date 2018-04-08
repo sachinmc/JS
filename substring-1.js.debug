@@ -1,0 +1,35 @@
+// Write a function that returns a substring of a string based on
+// a starting index and length.
+
+function substr(str, start, length) {
+  var i;
+  var result = '';
+
+  if (start < 0) {
+    start = str.length + start;
+  }
+
+  if (length > str.length) {
+    length = str.length - start;
+  }
+
+  for (i = start; i <= length; i++) {
+    result += str[i];
+  }
+
+  return result;
+}
+
+/*
+start at the index, iterate for the length
+while iterating add characters to result
+return result and that is the substring
+*/
+
+var string = 'hello world';
+
+substr(string, 2, 4);      // "llo "
+substr(string, -3, 2);     // "rl"
+substr(string, 8, 20);     // "rld"
+substr(string, 0, -20);    // ""
+substr(string, 0, 0);      // ""
