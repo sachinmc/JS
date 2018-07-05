@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Search Filtering</title>
+    <link href="stylesheet.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+      $(function() {
+        var search_string = "";
+        var list_size = $('li').length;
+        var items = [{
+          "title": "The Legend of Zelda: Majora's Mask 3D",
+          "id": 1,
+          "category": "Nintendo 3DS"
+        }, {
+          "title": "Super Smash Bros.",
+          "id": 2,
+          "category": "Nintendo 3DS"
+        }, {
+          "title": "Super Smash Bros.",
+          "id": 3,
+          "category": "Nintendo WiiU"
+        }, {
+          "title": "LEGO Batman 3: Beyond Gotham",
+          "id": 4,
+          "category": "Nintendo WiiU"
+        }, {
+          "title": "LEGO Batman 3: Beyond Gotham",
+          "id": 5,
+          "category": "Xbox One"
+        }, {
+          "title": "LEGO Batman 3: Beyond Gotham",
+          "id": 6,
+          "category": "PlayStation 4"
+        }, {
+          "title": "Far Cry 4",
+          "id": 7,
+          "category": "PlayStation 4"
+        }, {
+          "title": "Far Cry 4",
+          "id": 8,
+          "category": "Xbox One"
+        }, {
+          "title": "Call of Duty: Advanced Warfare",
+          "id": 9,
+          "category": "PlayStation 4"
+        }, {
+          "title": "Call of Duty: Advanced Warfare",
+          "id": 10,
+          "category": "Xbox One"
+        }];
+
+        //$('li').hide();
+
+        function displayList() {
+          $('input:checked').each(function() {
+            var category = $(this).val();
+            items.forEach(function(obj) {
+              if (obj.category === category) {
+                $('li').filter('[data-id=' + obj.id + ']').show();
+              }
+            });
+            /*
+            $('li:visible').addClass('bottom_border');
+            $('li:visible').eq(-1).removeClass('bottom_border');
+            */
+          });
+        }
+
+        $('input[type=checkbox]').change(function() {
+          search_string = $('input[type=search]').val();
+
+          $('li').hide();
+          displayList();
+
+          if (search_string !== "") {
+            $('form').trigger('submit');
+          }
+
+        });
+
+        $('form').submit(function(event) {
+          event.preventDefault();
+
+          search_string = $('input[type=search]').val();
+
+          if (search_string === "") {
+            $('li').hide();
+            displayList();
+          }
+
+          $('li:visible').each(function() {
+            var $list_item = $(this);
+            var data_id = $list_item.attr('data-id');
+            var title;
+
+            items.forEach(function(obj) {
+              if (String(obj.id) === data_id) {
+                title = obj.title.toLowerCase();
+              }
+            });
+
+            if (!(RegExp(search_string, 'gi').test(title))) {
+              $list_item.hide();
+            }
+            /*
+            $('li:visible').addClass('bottom_border');
+            $('li:visible').eq(-1).removeClass('bottom_border');
+            */
+          });
+        });
+
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="page">
+      <form action="" method="get">
+        <input type="search" placeholder="Enter a Game Name"/><!--
+        --><input type="submit" value="Search"/>
+      </form>
+
+      <main>
+        <h1>Games</h1>
+        <ul>
+          <li data-id="1">The Legend of Zelda: Majora's Mask 3D for Nintendo 3DS</li>
+          <li data-id="2">Super Smash Bros. for Nintendo 3DS</li>
+          <li data-id="3">Super Smash Bros. for Nintendo WiiU</li>
+          <li data-id="4">LEGO Batman 3: Beyond Gotham for Nintendo WiiU</li>
+          <li data-id="5">LEGO Batman 3: Beyond Gotham for Xbox One</li>
+          <li data-id="6">LEGO Batman 3: Beyond Gotham for PlayStation 4</li>
+          <li data-id="7">Far Cry 4 for PlayStation 4</li>
+          <li data-id="8">Far Cry 4 for Xbox One</li>
+          <li data-id="9">Call of Duty: Advanced Warfare for PlayStation 4</li>
+          <li data-id="10">Call of Duty: Advanced Warfare for Xbox One</li>
+        </ul>
+      </main>
+
+      <aside>
+        <label>
+          <input type="checkbox" value="Nintendo 3DS"/>
+          Nintendo 3DS
+        </label>
+        <label>
+          <input type="checkbox" value="Nintendo WiiU"/>
+          Nintendo WiiU
+        </label>
+        <label>
+          <input type="checkbox" value="PlayStation 4"/>
+          PlayStation 4
+        </label>
+        <label>
+          <input type="checkbox" value="Xbox One"/>
+          Xbox One
+        </label>
+      </aside>
+
+    </div>
+  </body>
+</html>
