@@ -1,0 +1,98 @@
+<!doctype>
+<html>
+  <head>
+    <title>Dynamic Animations</title>
+    <link href="stylesheets/stylesheet.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+      $(function() {
+
+        function resetStart() {
+          let $divs = $('#canvas').children();
+          $divs.each(function() {
+            $(this).css({
+                top: $(this).attr('data-start-y') + 'px',
+                left: $(this).attr('data-start-x') + 'px',
+              });
+          });
+        }
+
+        $('form').submit(function(event) {
+          event.preventDefault();
+
+          let $canvas = $('#canvas');
+          let array = $(this).serializeArray();
+
+          let id_value = array[0].value;
+          let new_div = '<div id=' + id_value + '></div>';
+
+          // get start coordinates
+          let start_x = array.find(obj => obj.name === 'start_x').value;
+          let start_y = array.find(obj => obj.name === 'start_y').value;
+
+          // get end coordinates
+          let end_x = array.find(obj => obj.name === 'end_x').value;
+          let end_y = array.find(obj => obj.name === 'end_y').value;
+
+          $canvas.append(new_div);
+
+          $canvas.children().eq(-1).attr('data-start-x', String(start_x));
+          $canvas.children().eq(-1).attr('data-start-y', String(start_y));
+
+          $canvas.children().eq(-1).attr('data-end-x', String(end_x));
+          $canvas.children().eq(-1).attr('data-end-y', String(end_y));
+
+          // setting the starting point
+          resetStart();
+        });
+
+        $('a#start').click(function(event) {
+          event.preventDefault();
+
+          resetStart();
+
+          $('#canvas').children().each(function() {
+            $(this).stop().animate({
+              top: $(this).attr('data-end-y'),
+              left: $(this).attr('data-end-x'),
+            }, 1000);
+          });
+        });
+
+        $('a#stop').click(function() {
+          $('#canvas').children().each(function() {
+            $(this).stop();
+          });
+        });
+
+      });
+    </script>
+  </head>
+  <body>
+    <main>
+      <div id="canvas"></div>
+      <a id="start" href="#">Start</a> &vert; <a id="stop" href="#">Stop</a>
+      <h1>Add a Shape</h1>
+      <form action="" method="get">
+        <h2>Type</h2>
+        <ul>
+          <li><input type="radio" name="figure" value="square">Square</input></li>
+          <li><input type="radio" name="figure" value="circle">Circle</input></li>
+          <li><input type="radio" name="figure" value="star">Star</input></li>
+        </ul>
+        <p>Starting Point</p>
+        <input type="number" placeholder="x:" name="start_x"/>
+        <input type="number" placeholder="y:" name="start_y"/>
+
+        <p>Ending Point</p>
+        <input type="number" placeholder="x:" name="end_x"/>
+        <input type="number" placeholder="y:" name="end_y"/>
+
+        <input type="submit" value="Add">
+
+      </form>
+    </main>
+
+
+  </body>
+</html>

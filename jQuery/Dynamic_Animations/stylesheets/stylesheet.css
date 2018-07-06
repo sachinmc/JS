@@ -1,0 +1,67 @@
+body {
+  font: 14px normal Helvetica, Arial, sans-serif;
+  background: #761026;
+}
+
+form, p {
+  margin: 0;
+}
+
+main {
+  width: 852px;
+  padding: 25px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+#canvas {
+  min-width: 804px;
+  position: relative;
+  height: 600px;
+  margin-bottom: 10px;
+  border: 1px solid #cecece;
+  box-sizing: border-box;
+  background: linear-gradient(#ffffff, #1069CA);
+}
+
+a {
+  display: inline;
+}
+
+ul {
+  list-style: none;
+}
+
+p {
+  margin-bottom: 4px;
+}
+
+[type="number"] {
+  font: inherit;
+  height: 30px;
+  width: 70px;
+  padding: 0px 4px;
+  margin-bottom: 20px;
+}
+
+[type="submit"] {
+  display: block;
+}
+
+#square, #circle, #star {
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  background-color: #DDE149;
+}
+
+#circle {
+  border-radius: 100%;
+}
+
+#star {
+  background-color: transparent;
+  background-size: contain;
+  background-image: url("../assets/star.png");
+}
