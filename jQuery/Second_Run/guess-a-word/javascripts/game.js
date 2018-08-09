@@ -70,7 +70,7 @@ Game.prototype = {
   processGuess: function(e) {
     var letter = String.fromCharCode(e.which);
 
-    if (notALetter(e.which )) { return; }
+    if (notALetter(e.which)) { return; }
 
     if (this.duplicateGuess(letter)) { return; }
 
@@ -166,7 +166,7 @@ function notALetter(code) {
   var a_code = 97,
       z_code = 122;
 
-  return code < 97 || code > 122;
+  return code < a_code || code > z_code;
 }
 
 // new game created every time the page is refreshed.
