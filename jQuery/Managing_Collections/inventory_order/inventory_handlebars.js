@@ -21,7 +21,7 @@ var inventory;
     },
     cacheTemplate: function() {
       var $i_tmpl = $('#inventory_item').remove();
-      this.template = $i_tmpl.html();
+      this.template = Handlebars.compile($i_tmpl.html());
     },
     add: function() {
       this.lastId += 1;
@@ -61,9 +61,8 @@ var inventory;
     },
     newItem: function(e) {
       e.preventDefault(); // the click is on a button, but just to be safe
-      var item = this.add(),
-          $item = $(this.template.replace(/ID/g, item.id));
-
+      var item = this.add();
+      var $item = $(this.template({ id: item.id }));
       $('#inventory').append($item);
     },
     findParent: function(e) {

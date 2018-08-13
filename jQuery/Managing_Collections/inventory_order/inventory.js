@@ -21,7 +21,7 @@ var inventory;
     },
     cacheTemplate: function() {
       var $i_tmpl = $('#inventory_item').remove();
-      this.template = Handlebars.compile($i_tmpl.html());
+      this.template = $i_tmpl.html();
     },
     add: function() {
       this.lastId += 1;
@@ -42,6 +42,9 @@ var inventory;
     },
     get: function(id) {
       var found_item;
+      // returning false in forEach callback tells it to stop running the each
+      // loop because we found what we need, we don't need to process the rest of
+      // the collection further. 
       this.collection.forEach(function(item) {
         if (item.id === id) {
           found_item = item;
@@ -61,8 +64,9 @@ var inventory;
     },
     newItem: function(e) {
       e.preventDefault(); // the click is on a button, but just to be safe
-      var item = this.add();
-      var $item = $(this.template({ id: item.id }));
+      var item = this.add(),
+          $item = $(this.template.replace(/ID/g, item.id));
+
       $('#inventory').append($item);
     },
     findParent: function(e) {
@@ -98,6 +102,9 @@ var inventory;
 })();
 
 $($.proxy(inventory.init, inventory));
+
+// if you see duplication of code, create a new method.
+// if in the future an update is required, it needs to happen only in one place.
 
 // data processing really shouldn't exist within the DOM event callback
 // hence the abstraction to add, remove and update methods.
